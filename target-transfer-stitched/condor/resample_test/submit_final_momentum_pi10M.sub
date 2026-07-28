@@ -1,0 +1,22 @@
+universe = vanilla
+executable = run_final_momentum_condor_job.sh
+arguments = $(Process) 100000 pi+ 800000 finalmom_job
+
+initialdir = /uscms/homes/s/sergo/g4beamline/cooling_demonstrator/target-transfer-stitched/condor/resample_test
+
+output = logs/finalmom_job_$(Process).out
+error = logs/finalmom_job_$(Process).err
+log = logs/finalmom_condor.log
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = inputs, make_resampled_beam.py, summarize_resample.py, source_z2000_pi_mu.csv
+transfer_output_files = finalmom_job_$(Process)
+
+request_cpus = 1
+request_memory = 2 GB
+request_disk = 2 GB
+
++JobFlavour = "workday"
+
+queue 100

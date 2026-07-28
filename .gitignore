@@ -2,3 +2,43 @@
 cooling/g4bl/c1.dat
 cooling/g4bl/fieldmap.dat.txt
 cooling/g4bl/output.txt
+
+# Local editor / agent metadata.
+.agents/
+.codex/
+**/.agents/
+**/.codex/
+
+# Nested repositories copied into the work tree.
+**/.git/
+
+# G4Beamline / Condor generated outputs.
+*.log
+*.stdout
+*.stderr
+*.err
+*.out
+*.tmp
+*.root
+*.heprep
+*.h5
+*.hdf5
+
+# Large generated particle banks and detector dumps.
+target-transfer-stitched/**/source_z2000_pi_mu.csv
+target-transfer-stitched/**/beam.tmp
+target-transfer-stitched/**/score_z*.txt
+target-transfer-stitched/**/stitched_output*
+target-transfer-stitched/**/Track_*
+
+# Condor job output areas.
+target-transfer-stitched/condor/logs/
+target-transfer-stitched/condor/**/logs/
+target-transfer-stitched/condor/**/job_*/
+target-transfer-stitched/condor/**/transfer_job_*/
+target-transfer-stitched/condor/**/finalmom_job_*/
+target-transfer-stitched/condor/**/source_job_*/
+target-transfer-stitched/condor/**/scan_job_*/
+
+# Backup files.
+*~

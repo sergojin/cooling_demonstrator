@@ -1,0 +1,94 @@
+# Prototype stitched G4Beamline model:
+#   target/capture -> BDSIM-like pion decay channel -> BDSIM-like chicane
+#
+# This is intentionally separate from the production inputs. It includes a
+# copied target/capture approximation, then places G4BL equivalents of the
+# BDSIM DemoPionDecayChannel.gmad triplet lattice and DemoChicane_CTF3.gmad.
+#
+# Units are G4Beamline defaults: mm, MeV/c, Tesla, ns.
+
+include target_capture_stage.g4bl
+
+# Approximate transport-line aperture. The quadrupoles already kill particles
+# that hit their 200 mm bore; these annular iron scrapers add the same radial
+# acceptance in the drift spaces so meter-scale excursions do not survive to
+# the final scoring plane.
+param transport_aperture_radius=200
+tubs drift_aperture innerRadius=$transport_aperture_radius outerRadius=4000 length=100 material=Fe kill=1 color=0.35,0.35,0.35,0.45
+
+# Decay channel conversion from chicane/bdsim/DemoPionDecayChannel.gmad.
+# BDSIM triplet cell: 0.4 m drift, QF1 0.5 m, 0.4 m drift, QD 0.5 m,
+# 0.4 m drift, QF2 0.5 m, 0.4 m drift. Repeated 3 times.
+# Gradients convert k1 [1/m^2] to B' [T/m] using p_ref=270/1.15 MeV/c,
+# with the BDSIM scaling=1.15 included.
+param decay_QF_gradient=0.973
+param decay_QD_gradient=-1.85
+genericquad decay_quad fieldLength=500 ironLength=500 apertureRadius=200 ironRadius=300 kill=1 ironColor=0.1,0.5,0.9,0.4
+
+place drift_aperture z=2200.000 rename=aper_decay_in
+place decay_quad z=2650.000 gradient=$decay_QF_gradient rename=decay_QF1_1
+place drift_aperture z=3150.000 rename=aper_decay_1_1
+place decay_quad z=3550.000 gradient=$decay_QD_gradient rename=decay_QD_1
+place drift_aperture z=4050.000 rename=aper_decay_1_2
+place decay_quad z=4450.000 gradient=$decay_QF_gradient rename=decay_QF2_1
+place drift_aperture z=5100.000 rename=aper_decay_1_3
+place decay_quad z=5750.000 gradient=$decay_QF_gradient rename=decay_QF1_2
+place drift_aperture z=6250.000 rename=aper_decay_2_1
+place decay_quad z=6650.000 gradient=$decay_QD_gradient rename=decay_QD_2
+place drift_aperture z=7150.000 rename=aper_decay_2_2
+place decay_quad z=7550.000 gradient=$decay_QF_gradient rename=decay_QF2_2
+place drift_aperture z=8200.000 rename=aper_decay_2_3
+place decay_quad z=8850.000 gradient=$decay_QF_gradient rename=decay_QF1_3
+place drift_aperture z=9350.000 rename=aper_decay_3_1
+place decay_quad z=9750.000 gradient=$decay_QD_gradient rename=decay_QD_3
+place drift_aperture z=10250.000 rename=aper_decay_3_2
+place decay_quad z=10650.000 gradient=$decay_QF_gradient rename=decay_QF2_3
+place drift_aperture z=11000.000 rename=aper_decay_out
+param decay_end_z=11300.000
+
+# Chicane conversion from chicane/bdsim/DemoChicane_CTF3.gmad.
+# Quadrupole gradients convert k1 [1/m^2] to B' [T/m] at p_ref=200 MeV/c.
+param ch_q1_gradient=0.874131397
+param ch_q2_gradient=-0.700898219
+param ch_q3_gradient=-0.784936358
+param ch_q4_gradient=1.59657119
+param ch_q5_gradient=-0.784936358
+param ch_q6_gradient=1.17927583
+param ch_q7_gradient=-1.11734632
+param ch_q8_gradient=0.299730689
+genericquad chicane_quad fieldLength=500 ironLength=500 apertureRadius=200 ironRadius=300 kill=1 ironColor=0.2,0.8,0.2,0.4
+
+# BDSIM bends: l=1000 mm, angle=-34 deg. Radius = L/angle = 1685.17 mm.
+# Dipole field is set for a 200 MeV/c reference particle.
+param chicane_bend1_angle=-34
+param chicane_bend2_angle=34
+param chicane_bend_radius=1685.16999
+param chicane_bend1_By=0.395881837
+param chicane_bend2_By=-0.395881837
+genericsectorbend chicane_bend_1_proto angle=$chicane_bend1_angle \
+    fieldCenterRadius=$chicane_bend_radius fieldInnerRadius=1485 fieldOuterRadius=1885 fieldHeight=400 \
+    ironInnerRadius=1285 ironOuterRadius=2085 ironHeight=600 \
+    DipoleField=$chicane_bend1_By kill=1 fringe=0 ironColor=1,1,1
+genericsectorbend chicane_bend_2_proto angle=$chicane_bend2_angle \
+    fieldCenterRadius=$chicane_bend_radius fieldInnerRadius=1485 fieldOuterRadius=1885 fieldHeight=400 \
+    ironInnerRadius=1285 ironOuterRadius=2085 ironHeight=600 \
+    DipoleField=$chicane_bend2_By kill=1 fringe=0 ironColor=1,1,1
+
+place drift_aperture z=11200.000 rename=aper_chicane_in
+place chicane_quad z=11550.000 gradient=$ch_q1_gradient rename=ch_q1
+place drift_aperture z=12050.000 rename=aper_chicane_q1_q2
+place chicane_quad z=12550.000 gradient=$ch_q2_gradient rename=ch_q2
+place drift_aperture z=13175.000 rename=aper_chicane_pre_b1
+place chicane_bend_1_proto z=13300.000 rename=chicane_bend_1
+cornerarc chicane_arc_1 centerRadius=$chicane_bend_radius angle=$chicane_bend1_angle z=13300.000
+place chicane_quad z=15550.000 gradient=$ch_q3_gradient rename=ch_q3
+place chicane_quad z=16550.000 gradient=$ch_q4_gradient rename=ch_q4
+place chicane_quad z=17550.000 gradient=$ch_q5_gradient rename=ch_q5
+place chicane_bend_2_proto z=18800.000 rename=chicane_bend_2
+cornerarc chicane_arc_2 centerRadius=$chicane_bend_radius angle=$chicane_bend2_angle z=18800.000
+place chicane_quad z=20550.000 gradient=$ch_q6_gradient rename=ch_q6
+place chicane_quad z=21550.000 gradient=$ch_q7_gradient rename=ch_q7
+place chicane_quad z=22550.000 gradient=$ch_q8_gradient rename=ch_q8
+param stitched_end_z=23300.000
+
+# The copied target/capture stage defines stitched_output at z=2000 and z=23300.

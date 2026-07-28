@@ -1,0 +1,8 @@
+# Diagnostic overlay for the stitched target/decay/chicane line: all live tracks.
+# Run from this directory:
+#   g4bl loss_diagnostic.g4bl n_events=1000 viewer=none
+
+include stitched_target_decay_chicane.g4bl
+
+# Coarse alive-particle counters along the line. G4Beamline writes z in meters.
+zntuple loss_all file=loss_all format=FOR009.DAT zloop=2000:23300:500 referenceParticle=0

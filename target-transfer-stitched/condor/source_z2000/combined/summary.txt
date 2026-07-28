@@ -1,0 +1,8 @@
+completed_jobs 10
+events_per_job 100000
+total_events 1000000
+source_mu+ 40236
+source_mu+_per_proton 0.040236
+source_pi+ 689145
+source_pi+_per_proton 0.689145
+source_tracks 729381

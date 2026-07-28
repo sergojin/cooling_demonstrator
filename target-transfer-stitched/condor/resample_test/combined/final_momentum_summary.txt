@@ -1,0 +1,13 @@
+score_files 100
+final_mu+ 2753
+final_-14 3
+final_-13 2753
+final_-11 5
+final_12 3
+final_14 407
+final_211 4674
+p_min_MeVc 92.6378
+p_median_MeVc 207.69
+p_mean_MeVc 251.587
+p_max_MeVc 493.357
+p_180_220_MeVc 1421

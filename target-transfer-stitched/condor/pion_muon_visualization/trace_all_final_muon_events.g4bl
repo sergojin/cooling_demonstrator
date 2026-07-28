@@ -1,0 +1,7 @@
+randomseed now 300000
+include stitched_target_decay_chicane.g4bl
+
+# Trace pion and muon tracks for the 19 events with true muons at z=23300
+# in the 10k-proton scan.
+trace nTrace=1000000 oneNTuple=1 format=asciiExtended file=trace_all_final_muon_events.txt \
+    require=(EventID==1001||EventID==1112||EventID==1508||EventID==1605||EventID==1742||EventID==2034||EventID==2364||EventID==2865||EventID==3535||EventID==3553||EventID==3760||EventID==5635||EventID==6278||EventID==6561||EventID==7755||EventID==8160||EventID==9461||EventID==9480||EventID==9803)&&(PDGid==211||PDGid==-211||PDGid==13||PDGid==-13) traceTune=0

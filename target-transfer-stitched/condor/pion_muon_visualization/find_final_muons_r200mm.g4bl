@@ -1,0 +1,6 @@
+randomseed now 300000
+include stitched_target_decay_chicane.g4bl
+
+# True muons at the final plane, restricted to a 200 mm radial aperture.
+zntuple final_true_muons_r200mm file=final_true_muons_r200mm format=asciiExtended z=23300 \
+    require=(PDGid==13||PDGid==-13)&&(x*x+y*y<40000) referenceParticle=0
