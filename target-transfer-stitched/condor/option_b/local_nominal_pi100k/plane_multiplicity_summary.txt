@@ -1,0 +1,16 @@
+after_horn z_mm 2000
+after_horn_pi+ 99995
+after_horn_mu+ 0
+after_horn_total_pi_mu 99995
+before_chicane z_mm 11000
+before_chicane_pi+ 12423
+before_chicane_mu+ 1690
+before_chicane_total_pi_mu 14113
+after_chicane z_mm 20500
+after_chicane_pi+ 84
+after_chicane_mu+ 57
+after_chicane_total_pi_mu 141
+after_final_focusing z_mm 23300
+after_final_focusing_pi+ 49
+after_final_focusing_mu+ 24
+after_final_focusing_total_pi_mu 73

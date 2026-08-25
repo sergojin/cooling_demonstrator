@@ -1,0 +1,19 @@
+completed_jobs 10
+events_per_job 100000
+total_events 1000000
+source_mu+ 40429
+source_mu+_per_proton 0.040429
+source_pi+ 691391
+source_pi+_per_proton 0.691391
+source_tracks 731820
+selected_sources
+selected_job_0 job_0 73131 job_0/source_z2000.txt
+selected_job_1 rescue_job_1 73231 rescue_job_1/source_z2000.txt
+selected_job_2 job_2 73466 job_2/source_z2000.txt
+selected_job_3 job_3 73350 job_3/source_z2000.txt
+selected_job_4 job_4 72837 job_4/source_z2000.txt
+selected_job_5 rescue_job_5 73045 rescue_job_5/source_z2000.txt
+selected_job_6 job_6 73023 job_6/source_z2000.txt
+selected_job_7 rescue_job_7 73352 rescue_job_7/source_z2000.txt
+selected_job_8 rescue_job_8 73315 rescue_job_8/source_z2000.txt
+selected_job_9 job_9 73070 job_9/source_z2000.txt

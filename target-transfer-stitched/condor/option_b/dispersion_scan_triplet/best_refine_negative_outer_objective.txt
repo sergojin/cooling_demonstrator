@@ -1,0 +1,23 @@
+Negative-outer refined points ranked by final objective sqrt(D^2 + (1000 D')^2)
+D is in mm, D' is in rad per delta.
+
+outer=-0.80 center=1.30 q3=q5=0.627949086 q4=2.07554255 after_D=-3491.70008 after_Dp=0.33440128 final_D=-420.38966 final_Dp=0.812696272 final_obj=914.987813
+outer=-0.80 center=1.35 q3=q5=0.627949086 q4=2.15537111 after_D=-3562.97241 after_Dp=0.371590791 final_D=-315.78342 final_Dp=0.866241426 final_obj=922.005085
+outer=-0.80 center=1.25 q3=q5=0.627949086 q4=1.99571399 after_D=-3418.84783 after_Dp=0.296586712 final_D=-526.11582 final_Dp=0.75834642 final_obj=922.977328
+outer=-0.80 center=1.40 q3=q5=0.627949086 q4=2.23519967 after_D=-3632.68479 after_Dp=0.408160498 final_D=-212.90308 final_Dp=0.918790255 final_obj=943.134801
+outer=-0.80 center=1.20 q3=q5=0.627949086 q4=1.91588543 after_D=-3344.41564 after_Dp=0.258135877 final_D=-633.3079 final_Dp=0.703073297 final_obj=946.251001
+outer=-0.70 center=1.30 q3=q5=0.549455451 q4=2.07554255 after_D=-3590.6333 after_Dp=0.331525628 final_D=-476.68712 final_Dp=0.821118357 final_obj=949.455616
+outer=-0.70 center=1.35 q3=q5=0.549455451 q4=2.15537111 after_D=-3672.02307 after_Dp=0.371638193 final_D=-366.10996 final_Dp=0.87935457 final_obj=952.523471
+outer=-0.70 center=1.25 q3=q5=0.549455451 q4=1.99571399 after_D=-3507.50364 after_Dp=0.290739641 final_D=-588.98816 final_Dp=0.76183052 final_obj=962.960432
+outer=-0.70 center=1.40 q3=q5=0.549455451 q4=2.23519967 after_D=-3750.65296 after_Dp=0.412336061 final_D=-252.00868 final_Dp=0.937973029 final_obj=971.237241
+outer=-0.80 center=1.45 q3=q5=0.627949086 q4=2.31502823 after_D=-3699.81725 after_Dp=0.445344661 final_D=-106.32648 final_Dp=0.971825054 final_obj=977.624291
+outer=-0.60 center=1.35 q3=q5=0.470961815 q4=2.15537111 after_D=-3773.67764 after_Dp=0.369927335 final_D=-419.56494 final_Dp=0.889427193 final_obj=983.420292
+outer=-0.80 center=1.15 q3=q5=0.627949086 q4=1.83605687 after_D=-3268.38352 after_Dp=0.219043905 final_D=-741.9739 final_Dp=0.64686999 final_obj=984.360733
+outer=-0.60 center=1.30 q3=q5=0.470961815 q4=2.07554255 after_D=-3681.43085 after_Dp=0.326763462 final_D=-536.36094 final_Dp=0.826221551 final_obj=985.050816
+outer=-0.70 center=1.20 q3=q5=0.549455451 q4=1.91588543 after_D=-3422.61411 after_Dp=0.249277546 final_D=-702.47908 final_Dp=0.70166491 final_obj=992.879904
+outer=-0.60 center=1.40 q3=q5=0.470961815 q4=2.23519967 after_D=-3863.34461 after_Dp=0.413213884 final_D=-300.87878 final_Dp=0.952527515 final_obj=998.917768
+outer=-0.70 center=1.45 q3=q5=0.549455451 q4=2.31502823 after_D=-3829.06297 after_Dp=0.450634408 final_D=-146.48708 final_Dp=0.99371183 final_obj=1004.45093
+outer=-0.60 center=1.25 q3=q5=0.470961815 q4=1.99571399 after_D=-3587.26422 after_Dp=0.282888319 final_D=-654.7948 final_Dp=0.761946885 final_obj=1004.64884
+outer=-0.50 center=1.35 q3=q5=0.392468179 q4=2.15537111 after_D=-3866.59641 after_Dp=0.367477554 final_D=-471.64834 final_Dp=0.897575241 final_obj=1013.94944
+outer=-0.50 center=1.30 q3=q5=0.392468179 q4=2.07554255 after_D=-3763.65304 after_Dp=0.320074854 final_D=-599.25912 final_Dp=0.827947816 final_obj=1022.06119
+outer=-0.50 center=1.40 q3=q5=0.392468179 q4=2.23519967 after_D=-3968.24001 after_Dp=0.413231427 final_D=-349.26134 final_Dp=0.965118452 final_obj=1026.37084

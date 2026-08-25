@@ -1,0 +1,22 @@
+universe = vanilla
+executable = run_chicane_group_job.sh
+arguments = $(point_id) $(group_name) $(scale) 1000000 pi+ 900000 $(Cluster)
+
+initialdir = /uscms/homes/s/sergo/g4beamline/cooling_demonstrator/target-transfer-stitched/condor/chicane_group_scan
+
+output = logs/$(Cluster)_point_$(point_id).out
+error = logs/$(Cluster)_point_$(point_id).err
+log = logs/condor.log
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = inputs, make_resampled_beam.py, scale_chicane_group.py, summarize_chicane_group_job.py, ../source_z2000/combined/source_z2000_pi_mu.csv
+transfer_output_files = jobs/$(Cluster)_point_$(point_id)
+
+request_cpus = 1
+request_memory = 2 GB
+request_disk = 4 GB
+
++JobFlavour = "workday"
+
+queue point_id,group_name,scale from scan_points.txt

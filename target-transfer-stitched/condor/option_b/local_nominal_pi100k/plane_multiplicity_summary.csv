@@ -1,0 +1,5 @@
+plane,z_mm,pi+,mu+,total_pi_mu
+after_horn,2000,99995,0,99995
+before_chicane,11000,12423,1690,14113
+after_chicane,20500,84,57,141
+after_final_focusing,23300,49,24,73

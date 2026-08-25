@@ -9,6 +9,11 @@ cooling/g4bl/output.txt
 **/.agents/
 **/.codex/
 
+# Python generated files.
+__pycache__/
+**/__pycache__/
+*.pyc
+
 # Nested repositories copied into the work tree.
 **/.git/
 
@@ -32,13 +37,20 @@ target-transfer-stitched/**/stitched_output*
 target-transfer-stitched/**/Track_*
 
 # Condor job output areas.
+runs/
 target-transfer-stitched/condor/logs/
 target-transfer-stitched/condor/**/logs/
 target-transfer-stitched/condor/**/job_*/
+target-transfer-stitched/condor/**/rescue_job_*/
 target-transfer-stitched/condor/**/transfer_job_*/
 target-transfer-stitched/condor/**/finalmom_job_*/
 target-transfer-stitched/condor/**/source_job_*/
 target-transfer-stitched/condor/**/scan_job_*/
+target-transfer-stitched/condor/**/runs/
+target-transfer-stitched/condor/**/runs_*/
+target-transfer-stitched/condor/chicane_group_scan/*_point_*/
+target-transfer-stitched/condor/chicane_group_scan/*_diag_*/
+target-transfer-stitched/condor/chicane_group_scan/point_*/
 
 # Backup files.
 *~

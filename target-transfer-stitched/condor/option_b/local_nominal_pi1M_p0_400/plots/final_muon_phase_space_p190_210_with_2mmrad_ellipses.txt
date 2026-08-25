@@ -1,0 +1,13 @@
+run_dir /uscms/homes/s/sergo/g4beamline/cooling_demonstrator/target-transfer-stitched/condor/option_b/local_nominal_pi1M_p0_400
+selection final-plane mu+ with 190 <= p <= 210 MeV/c
+axis_x_or_y_m -0.2 0.2
+axis_xp_or_yp_rad -0.15 0.15
+final_mu+_p190_210 458
+final_mu+_p190_210_xxp_yyp_eps_lt_2mmrad 58
+final_x_eps_rms_mm_rad 6.80394221
+final_x_beta_mm 891.423942
+final_x_alpha -0.304661295
+final_y_eps_rms_mm_rad 2.0735411
+final_y_beta_mm 2866.05461
+final_y_alpha -0.120194711
+plot /uscms/homes/s/sergo/g4beamline/cooling_demonstrator/target-transfer-stitched/condor/option_b/local_nominal_pi1M_p0_400/plots/final_muon_phase_space_p190_210_with_2mmrad_ellipses.png

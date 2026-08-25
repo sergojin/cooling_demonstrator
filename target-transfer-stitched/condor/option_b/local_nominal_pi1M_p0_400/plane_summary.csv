@@ -1,0 +1,5 @@
+job_id,n_events,plane,z_mm,mu+_all,mu+_p190_210,pi+_all,pi+_p190_210
+0,1000000,after_horn,2000,8,0,999819,60889
+0,1000000,before_chicane,11000,16924,1889,67755,4487
+0,1000000,after_chicane,20500,2435,726,3730,1433
+0,1000000,after_final_focusing,23300,1012,458,1910,766

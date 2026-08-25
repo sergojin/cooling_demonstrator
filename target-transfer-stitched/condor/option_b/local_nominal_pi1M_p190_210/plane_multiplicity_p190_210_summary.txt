@@ -1,0 +1,17 @@
+momentum_window_MeVc 190 210
+after_horn z_mm 2000
+after_horn_pi+_p190_210 12644
+after_horn_mu+_p190_210 0
+after_horn_total_pi_mu_p190_210 12644
+before_chicane z_mm 11000
+before_chicane_pi+_p190_210 894
+before_chicane_mu+_p190_210 395
+before_chicane_total_pi_mu_p190_210 1289
+after_chicane z_mm 20500
+after_chicane_pi+_p190_210 303
+after_chicane_mu+_p190_210 175
+after_chicane_total_pi_mu_p190_210 478
+after_final_focusing z_mm 23300
+after_final_focusing_pi+_p190_210 154
+after_final_focusing_mu+_p190_210 111
+after_final_focusing_total_pi_mu_p190_210 265

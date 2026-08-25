@@ -1,5 +1,8 @@
 score_files 100
-final_mu+ 2753
+muon_momentum_window_MeVc 190 210
+muon_transverse_acceptance_mm 20
+final_mu+ 27
+final_mu+_uncut 2753
 final_-14 3
 final_-13 2753
 final_-11 5
@@ -10,4 +13,6 @@ p_min_MeVc 92.6378
 p_median_MeVc 207.69
 p_mean_MeVc 251.587
 p_max_MeVc 493.357
-p_180_220_MeVc 1421
+p_190_210_MeVc 983
+r_le_20mm 37
+p_190_210_MeVc_r_le_20mm 27

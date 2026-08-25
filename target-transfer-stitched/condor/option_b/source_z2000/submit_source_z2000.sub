@@ -1,0 +1,22 @@
+universe = vanilla
+executable = run_source_job.sh
+arguments = $(Process) 100000
+
+initialdir = /uscms/homes/s/sergo/g4beamline/cooling_demonstrator/target-transfer-stitched/condor/option_b/source_z2000
+
+output = logs/job_$(Process).out
+error = logs/job_$(Process).err
+log = logs/condor.log
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = inputs, summarize_source_job.py
+transfer_output_files = job_$(Process)
+
+request_cpus = 1
+request_memory = 2 GB
+request_disk = 4 GB
+
++JobFlavour = "workday"
+
+queue 10

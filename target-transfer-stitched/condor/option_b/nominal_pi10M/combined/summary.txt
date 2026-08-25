@@ -1,0 +1,31 @@
+completed_jobs 10
+events_per_job 1000000
+total_events 10000000
+momentum_window_MeVc 190 210
+after_horn z_mm 2000
+after_horn_mu+_all 21
+after_horn_mu+_p190_210 0
+after_horn_pi+_all 9999306
+after_horn_pi+_p190_210 126539
+before_chicane z_mm 11000
+before_chicane_mu+_all 168060
+before_chicane_mu+_p190_210 3976
+before_chicane_pi+_all 1251485
+before_chicane_pi+_p190_210 9304
+after_chicane z_mm 20500
+after_chicane_mu+_all 5572
+after_chicane_mu+_p190_210 1572
+after_chicane_pi+_all 7734
+after_chicane_pi+_p190_210 3067
+after_final_focusing z_mm 23300
+after_final_focusing_mu+_all 2645
+after_final_focusing_mu+_p190_210 961
+after_final_focusing_pi+_all 4414
+after_final_focusing_pi+_p190_210 1617
+final_mu+_p190_210_xxp_yyp_eps_lt_2mmrad 143
+final_x_eps_rms_mm_rad 5.38008929
+final_x_beta_mm 1156.77251
+final_x_alpha -0.565444697
+final_y_eps_rms_mm_rad 1.84391907
+final_y_beta_mm 3298.19731
+final_y_alpha -0.0351347938

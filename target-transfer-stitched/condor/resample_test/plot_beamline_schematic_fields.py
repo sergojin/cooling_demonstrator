@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import argparse
 from pathlib import Path
 
 import matplotlib
@@ -50,14 +51,71 @@ def add_radius_lines(ax, z0_mm, z1_mm, radius_mm, color="0.25", linewidth=0.8, l
     ax.hlines([radius_mm, -radius_mm], z0, z1, color=color, linewidth=linewidth, linestyle=linestyle)
 
 
+def parse_args():
+    parser = argparse.ArgumentParser(description="Plot stitched beamline schematic with component field settings.")
+    parser.add_argument("--horn-option", choices=("A", "B"), default="A")
+    parser.add_argument("--output", type=Path)
+    parser.add_argument("--table", type=Path)
+    return parser.parse_args()
+
+
+def horn_inner_profile(option):
+    if option == "A":
+        return "Option A tapered conductor", [
+            (927.5, 26.4229548),
+            (982.5, 34.2446771),
+            (1037.5, 40.6939765),
+            (1092.5, 48.624333),
+            (1147.5, 57.0850213),
+            (1202.5, 64.3336947),
+            (1257.5, 71.3786997),
+            (1312.5, 78.0219532),
+            (1367.5, 84.3623389),
+            (1422.5, 90.3277407),
+            (1477.5, 95.8763534),
+            (1532.5, 100.9758045),
+            (1587.5, 103.9108589),
+            (1642.5, 108.6833562),
+            (1697.5, 112.8007331),
+            (1752.5, 116.1068024),
+            (1807.5, 118.6713218),
+            (1862.5, 120.502913),
+            (1917.5, 121.730284),
+            (1972.5, 122.3458667),
+        ]
+    return "Option B elliptical conductor", [
+        (927.5, 30.3217233),
+        (982.5, 45.7725730),
+        (1037.5, 60.6503747),
+        (1092.5, 74.5887876),
+        (1147.5, 87.2446017),
+        (1202.5, 98.3061888),
+        (1257.5, 107.5011759),
+        (1312.5, 114.6031520),
+        (1367.5, 119.4372428),
+        (1422.5, 121.8844170),
+        (1477.5, 121.8844170),
+        (1532.5, 119.4372428),
+        (1587.5, 114.6031520),
+        (1642.5, 107.5011759),
+        (1697.5, 98.3061888),
+        (1752.5, 87.2446017),
+        (1807.5, 74.5887876),
+        (1862.5, 60.6503747),
+        (1917.5, 45.7725730),
+        (1972.5, 30.3217233),
+    ]
+
+
 def main():
+    args = parse_args()
     PLOTS.mkdir(exist_ok=True)
     COMBINED.mkdir(exist_ok=True)
 
     elements = []
 
     # Target/capture stage.
-    elements.append(("horn", 0.0, 2000.0, "Horn", "I = 220 kA\nBphi = 44/r_mm T", "horn"))
+    elements.append(("horn", 0.0, 2000.0, f"Horn {args.horn_option}", "I = 220 kA\nBphi = 44/r_mm T", "horn"))
     elements.append(("score", 2000.0, 2000.0, "z=2.0 m", "source plane", "plane"))
 
     # Decay-channel triplets, centers from the active G4BL input. Quads are 0.5 m long.
@@ -109,41 +167,20 @@ def main():
     ax.axvspan(0.0, 2.0, color="#f6c85f", alpha=0.10)
     ax.axvspan(2.0, 11.3, color="#82c7e6", alpha=0.08)
     ax.axvspan(11.3, 23.3, color="#8fd19e", alpha=0.07)
-    ax.text(1.0, -385, "target + horn", ha="center", va="center", fontsize=9)
+    ax.text(1.0, -385, f"target + horn option {args.horn_option}", ha="center", va="center", fontsize=9)
     ax.text(6.65, -385, "pion decay channel: 3 identical triplets", ha="center", va="center", fontsize=9)
     ax.text(17.3, -385, "chicane + matching quads", ha="center", va="center", fontsize=9)
 
-    # Horn radial geometry from target_capture_stage.g4bl.
+    # Horn radial geometry from target_capture_stage*.g4bl.
     add_radius_lines(ax, 0.0, 2000.0, 150.0, color="#8a6f13", linewidth=1.1, linestyle="-")
     add_radius_lines(ax, 0.0, 900.0, 6.0, color="black", linewidth=1.2, linestyle="-")
     ax.text(0.45, 18, "target\nr=6 mm", ha="center", va="bottom", fontsize=6.8)
-    horn_inner = [
-        (927.5, 26.4229548),
-        (982.5, 34.2446771),
-        (1037.5, 40.6939765),
-        (1092.5, 48.624333),
-        (1147.5, 57.0850213),
-        (1202.5, 64.3336947),
-        (1257.5, 71.3786997),
-        (1312.5, 78.0219532),
-        (1367.5, 84.3623389),
-        (1422.5, 90.3277407),
-        (1477.5, 95.8763534),
-        (1532.5, 100.9758045),
-        (1587.5, 103.9108589),
-        (1642.5, 108.6833562),
-        (1697.5, 112.8007331),
-        (1752.5, 116.1068024),
-        (1807.5, 118.6713218),
-        (1862.5, 120.502913),
-        (1917.5, 121.730284),
-        (1972.5, 122.3458667),
-    ]
+    horn_profile_label, horn_inner = horn_inner_profile(args.horn_option)
     z_inner = [mm_to_m(z) for z, _ in horn_inner]
     r_inner = [r for _, r in horn_inner]
     ax.plot(z_inner, r_inner, color="0.35", linewidth=1.0)
     ax.plot(z_inner, [-r for r in r_inner], color="0.35", linewidth=1.0)
-    ax.text(1.58, 130, "horn conductor", ha="center", va="bottom", fontsize=6.8, color="0.25")
+    ax.text(1.58, 130, horn_profile_label, ha="center", va="bottom", fontsize=6.8, color="0.25")
 
     rows = []
     for kind, z0, z1, label, field, style in sorted(elements, key=lambda e: e[1]):
@@ -175,7 +212,10 @@ def main():
     ax.set_ylabel("radial dimension r [mm]")
     ax.set_yticks([-300, -200, -150, 0, 150, 200, 300])
     ax.set_xlabel("z [m]")
-    ax.set_title("G4Beamline stitched beamline schematic with magnetic field settings and radial dimensions")
+    ax.set_title(
+        f"G4Beamline stitched beamline schematic, horn option {args.horn_option}, "
+        "with magnetic field settings and radial dimensions"
+    )
     ax.grid(axis="both", linewidth=0.35, alpha=0.35)
 
     legend_handles = [
@@ -194,10 +234,18 @@ def main():
     )
 
     fig.subplots_adjust(left=0.055, right=0.995, top=0.90, bottom=0.24)
-    output = PLOTS / "beamline_schematic_with_fields.png"
+    output = args.output or PLOTS / (
+        "beamline_schematic_with_fields.png"
+        if args.horn_option == "A"
+        else f"beamline_schematic_with_fields_option_{args.horn_option.lower()}.png"
+    )
     fig.savefig(output)
 
-    table = COMBINED / "beamline_schematic_fields.csv"
+    table = args.table or COMBINED / (
+        "beamline_schematic_fields.csv"
+        if args.horn_option == "A"
+        else f"beamline_schematic_fields_option_{args.horn_option.lower()}.csv"
+    )
     with table.open("w") as f:
         f.write("element,z_start_mm,z_end_mm,field_label\n")
         for label, z0, z1, field in rows:

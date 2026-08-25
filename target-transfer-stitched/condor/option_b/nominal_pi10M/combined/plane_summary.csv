@@ -1,0 +1,5 @@
+plane,z_mm,mu+_all,mu+_p190_210,pi+_all,pi+_p190_210
+after_horn,2000,21,0,9999306,126539
+before_chicane,11000,168060,3976,1251485,9304
+after_chicane,20500,5572,1572,7734,3067
+after_final_focusing,23300,2645,961,4414,1617

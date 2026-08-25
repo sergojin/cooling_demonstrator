@@ -1,0 +1,7 @@
+source_pi+ 691391
+resampled_pi+ 10000000
+resampled_pi+_p0_400_MeVc 2067924
+resampled_pi+_p190_210_MeVc 126569
+fraction_p0_400 0.2067924
+fraction_p190_210 0.0126569
+plot /uscms/homes/s/sergo/g4beamline/cooling_demonstrator/target-transfer-stitched/condor/option_b/nominal_pi10M/plots/resampled_pion_momentum_10M.png

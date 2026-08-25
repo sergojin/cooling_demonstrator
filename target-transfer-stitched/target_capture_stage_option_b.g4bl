@@ -1,0 +1,98 @@
+# G4Beamline approximation of chicane/fluka/target_baseline_B/CoolDemoTarget.inp
+#
+# Units here are G4Beamline defaults: mm, MeV/c, ns, Tesla.
+# FLUKA geometry was in cm; dimensions below are converted to mm.
+#
+# Main approximations:
+# - The FLUKA horn conductor combinatorial geometry is represented by simple
+#   cylindrical aluminum wall segments.
+# - The Option B elliptical inner conductor is represented by 20 short tubes
+#   with stepwise radii instead of exact conical frusta.
+# - The ideal horn field from magfld.f is implemented as a rectangular
+#   fieldexpr volume. It is not clipped exactly to the FLUKA argon region.
+
+param -unset n_events=100
+param -unset proton_p=14000
+param -unset horn_current_kA=220
+param -unset horn_direction=1
+param -unset max_step=5
+
+param horn_field_coeff=0.2*$horn_current_kA*$horn_direction
+param epsMax=0.01
+
+physics QGSP_BIC doStochastics=1
+# Neutrons are not used by the downstream pion/muon scoring and can dominate
+# CPU time in the target/horn shower. Kill neutron tracks immediately.
+trackcuts kill=neutron
+
+material Graphite density=1.8 C,1.0
+
+# FLUKA targetPhys targetCyl: graphite cylinder, radius 0.6 cm, z=0..90 cm.
+tubs target innerRadius=0 outerRadius=6 length=900 material=Graphite color=0.2,0.2,0.2 kill=0 maxStep=$max_step
+place target z=450
+
+# FLUKA hornConPhys outer shell: aluminum annulus, r=14.75..15.0 cm, z=0..200 cm.
+tubs horn_outer_shell innerRadius=147.5 outerRadius=150.0 length=2000 material=Al color=0.8,0.8,0.8 kill=0 maxStep=$max_step
+place horn_outer_shell z=1000
+
+# FLUKA Option B inner conductor wall. Each segment is the midpoint-radius
+# approximation to one B000300..B000319 / B000500..B000519 elliptical shell pair.
+tubs horn_ellipse_00 innerRadius=27.8217233 outerRadius=30.3217233 length=55 material=Al color=0.8,0.8,0.8 kill=0 maxStep=$max_step
+place horn_ellipse_00 z=1972.5
+tubs horn_ellipse_01 innerRadius=43.2725730 outerRadius=45.7725730 length=55 material=Al color=0.8,0.8,0.8 kill=0 maxStep=$max_step
+place horn_ellipse_01 z=1917.5
+tubs horn_ellipse_02 innerRadius=58.1503747 outerRadius=60.6503747 length=55 material=Al color=0.8,0.8,0.8 kill=0 maxStep=$max_step
+place horn_ellipse_02 z=1862.5
+tubs horn_ellipse_03 innerRadius=72.0887876 outerRadius=74.5887876 length=55 material=Al color=0.8,0.8,0.8 kill=0 maxStep=$max_step
+place horn_ellipse_03 z=1807.5
+tubs horn_ellipse_04 innerRadius=84.7446017 outerRadius=87.2446017 length=55 material=Al color=0.8,0.8,0.8 kill=0 maxStep=$max_step
+place horn_ellipse_04 z=1752.5
+tubs horn_ellipse_05 innerRadius=95.8061888 outerRadius=98.3061888 length=55 material=Al color=0.8,0.8,0.8 kill=0 maxStep=$max_step
+place horn_ellipse_05 z=1697.5
+tubs horn_ellipse_06 innerRadius=105.0011759 outerRadius=107.5011759 length=55 material=Al color=0.8,0.8,0.8 kill=0 maxStep=$max_step
+place horn_ellipse_06 z=1642.5
+tubs horn_ellipse_07 innerRadius=112.1031520 outerRadius=114.6031520 length=55 material=Al color=0.8,0.8,0.8 kill=0 maxStep=$max_step
+place horn_ellipse_07 z=1587.5
+tubs horn_ellipse_08 innerRadius=116.9372428 outerRadius=119.4372428 length=55 material=Al color=0.8,0.8,0.8 kill=0 maxStep=$max_step
+place horn_ellipse_08 z=1532.5
+tubs horn_ellipse_09 innerRadius=119.3844170 outerRadius=121.8844170 length=55 material=Al color=0.8,0.8,0.8 kill=0 maxStep=$max_step
+place horn_ellipse_09 z=1477.5
+tubs horn_ellipse_10 innerRadius=119.3844170 outerRadius=121.8844170 length=55 material=Al color=0.8,0.8,0.8 kill=0 maxStep=$max_step
+place horn_ellipse_10 z=1422.5
+tubs horn_ellipse_11 innerRadius=116.9372428 outerRadius=119.4372428 length=55 material=Al color=0.8,0.8,0.8 kill=0 maxStep=$max_step
+place horn_ellipse_11 z=1367.5
+tubs horn_ellipse_12 innerRadius=112.1031520 outerRadius=114.6031520 length=55 material=Al color=0.8,0.8,0.8 kill=0 maxStep=$max_step
+place horn_ellipse_12 z=1312.5
+tubs horn_ellipse_13 innerRadius=105.0011759 outerRadius=107.5011759 length=55 material=Al color=0.8,0.8,0.8 kill=0 maxStep=$max_step
+place horn_ellipse_13 z=1257.5
+tubs horn_ellipse_14 innerRadius=95.8061888 outerRadius=98.3061888 length=55 material=Al color=0.8,0.8,0.8 kill=0 maxStep=$max_step
+place horn_ellipse_14 z=1202.5
+tubs horn_ellipse_15 innerRadius=84.7446017 outerRadius=87.2446017 length=55 material=Al color=0.8,0.8,0.8 kill=0 maxStep=$max_step
+place horn_ellipse_15 z=1147.5
+tubs horn_ellipse_16 innerRadius=72.0887876 outerRadius=74.5887876 length=55 material=Al color=0.8,0.8,0.8 kill=0 maxStep=$max_step
+place horn_ellipse_16 z=1092.5
+tubs horn_ellipse_17 innerRadius=58.1503747 outerRadius=60.6503747 length=55 material=Al color=0.8,0.8,0.8 kill=0 maxStep=$max_step
+place horn_ellipse_17 z=1037.5
+tubs horn_ellipse_18 innerRadius=43.2725730 outerRadius=45.7725730 length=55 material=Al color=0.8,0.8,0.8 kill=0 maxStep=$max_step
+place horn_ellipse_18 z=982.5
+tubs horn_ellipse_19 innerRadius=27.8217233 outerRadius=30.3217233 length=55 material=Al color=0.8,0.8,0.8 kill=0 maxStep=$max_step
+place horn_ellipse_19 z=927.5
+
+# Horn field from FLUKA magfld.f:
+#   B[T] = 0.02 * I[kA] / r[cm]
+#   Bx = -direction * B * sin(phi), By = direction * B * cos(phi)
+# With x,y in mm, this becomes Bx=-0.2*I*y/r_mm^2 and By=0.2*I*x/r_mm^2.
+# The +1 in the denominator regularizes the symmetry axis.
+fieldexpr horn_field width=300 height=300 length=2000 \
+    Bx=-$horn_field_coeff*y/(x*x+y*y+1) \
+    By=$horn_field_coeff*x/(x*x+y*y+1) \
+    Bz=0
+place horn_field z=1000
+
+reference particle=proton beamZ=-100 referenceMomentum=$proton_p
+beam gaussian particle=proton nEvents=$n_events beamZ=-100 meanMomentum=$proton_p \
+    sigmaX=0 sigmaY=0 sigmaXp=0 sigmaYp=0 sigmaP=0
+
+zntuple stitched_output file=stitched_output format=FOR009.DAT zloop=2000:23300:21300 \
+    require=x*x+y*y<40000 referenceParticle=0
+trace nTrace=0

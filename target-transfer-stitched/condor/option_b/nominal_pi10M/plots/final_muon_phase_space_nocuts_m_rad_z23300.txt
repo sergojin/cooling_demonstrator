@@ -1,0 +1,6 @@
+run_dir /uscms/homes/s/sergo/g4beamline/cooling_demonstrator/target-transfer-stitched/condor/option_b/nominal_pi10M
+selection PDGid==-13 only; no momentum cut; no ellipse cut
+final_mu+_nocuts 2645
+p_min_MeVc 91.2535687
+p_max_MeVc 481.608543
+plot nominal_pi10M/plots/final_muon_phase_space_nocuts_m_rad_z23300.png

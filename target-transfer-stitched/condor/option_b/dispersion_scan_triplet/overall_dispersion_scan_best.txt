@@ -1,0 +1,34 @@
+Overall dispersion scan summary
+Objective = sqrt(D^2 + (1000 Dprime)^2); D in mm, Dprime in rad per delta.
+Scanned symmetric triplet: q3=q5=outer_scale*(-0.784936358), q4=center_scale*(1.59657119).
+
+Original inherited triplet:
+outer=1.0 center=1.0 q3=q5=-0.784936358 q4=1.59657119 after_D=-853.569 after_Dp=-0.825554244 after_obj=1187.48467 final_D=-3446.02309 final_Dp=-0.810411637 final_obj=3540.0342
+
+Best by final-plane objective:
+outer=-1.60 center=1.25 q3=q5=1.25589817 q4=1.99571399 after_D=-2441.47678 after_Dp=0.274980084 after_obj=2456.91329 final_D=-148.08496 final_Dp=0.616550784 final_obj=634.085187 source=dispersion_refine_far_negative_outer_summary.csv
+outer=-1.60 center=1.30 q3=q5=1.25589817 q4=2.07554255 after_D=-2455.89598 after_Dp=0.293123537 after_obj=2473.327 final_D=-88.07126 final_Dp=0.640117875 final_obj=646.148157 source=dispersion_refine_far_negative_outer_summary.csv
+outer=-1.60 center=1.35 q3=q5=1.25589817 q4=2.15537111 after_D=-2469.715 after_Dp=0.310907843 after_obj=2489.20788 final_D=-29.08878 final_Dp=0.663186659 final_obj=663.8243 source=dispersion_refine_far_negative_outer_summary.csv
+outer=-1.60 center=1.40 q3=q5=1.25589817 q4=2.23519967 after_D=-2482.95384 after_Dp=0.328334692 after_obj=2504.56852 final_D=28.86974 final_Dp=0.685753364 final_obj=686.360793 source=dispersion_refine_far_negative_outer_summary.csv
+outer=-1.40 center=1.25 q3=q5=1.0989109 q4=1.99571399 after_D=-2724.43593 after_Dp=0.29185231 after_obj=2740.02353 final_D=-218.8753 final_Dp=0.670302638 final_obj=705.132629 source=dispersion_refine_far_negative_outer_summary.csv
+outer=-1.60 center=1.45 q3=q5=1.25589817 q4=2.31502823 after_D=-2495.59252 after_Dp=0.345405403 after_obj=2519.38225 final_D=85.81148 final_Dp=0.707827632 final_obj=713.010215 source=dispersion_refine_far_negative_outer_summary.csv
+outer=-1.40 center=1.30 q3=q5=1.0989109 q4=2.07554255 after_D=-2749.89551 after_Dp=0.314153258 after_obj=2767.78207 final_D=-148.64732 final_Dp=0.700205993 final_obj=715.810351 source=dispersion_refine_far_negative_outer_summary.csv
+outer=-1.40 center=1.35 q3=q5=1.0989109 q4=2.15537111 after_D=-2774.55494 after_Dp=0.336043787 after_obj=2794.83104 final_D=-79.52046 final_Dp=0.729528871 final_obj=733.850037 source=dispersion_refine_far_negative_outer_summary.csv
+outer=-1.60 center=1.50 q3=q5=1.25589817 q4=2.39485678 after_D=-2507.67102 after_Dp=0.362125622 after_obj=2533.68288 final_D=141.74364 final_Dp=0.729411513 final_obj=743.056132 source=dispersion_refine_far_negative_outer_summary.csv
+outer=-1.40 center=1.40 q3=q5=1.0989109 q4=2.23519967 after_D=-2798.41424 after_Dp=0.357528573 after_obj=2821.16092 final_D=-11.48782 final_Dp=0.758275393 final_obj=758.362408 source=dispersion_refine_far_negative_outer_summary.csv
+outer=-1.20 center=1.25 q3=q5=0.94192363 q4=1.99571399 after_D=-2984.00603 after_Dp=0.300897822 after_obj=2999.13846 final_D=-307.15994 final_Dp=0.711934261 final_obj=775.369344 source=dispersion_refine_far_negative_outer_summary.csv
+outer=-1.60 center=1.55 q3=q5=1.25589817 q4=2.47468534 after_D=-2518.04936 after_Dp=0.379818046 after_obj=2546.53378 final_D=202.0642 final_Dp=0.751973103 final_obj=778.648501 source=dispersion_refine_far_negative_outer_summary.csv
+
+Best by after-chicane objective:
+outer=1.2 center=1.0 q3=q5=-0.94192363 q4=1.59657119 after_D=-240.6019 after_Dp=-0.989897973 after_obj=1018.71845 final_D=-3827.62178 final_Dp=-1.1063989 final_obj=3984.32014 source=dispersion_scan_summary.csv
+outer=0.9 center=0.9 q3=q5=-0.706442722 q4=1.43691407 after_D=-372.0589 after_Dp=-0.96671829 after_obj=1035.84365 final_D=-3810.39332 final_Dp=-1.07720271 final_obj=3959.73016 source=dispersion_scan_summary.csv
+outer=0.7 center=0.8 q3=q5=-0.549455451 q4=1.27725695 after_D=-271.1228 after_Dp=-1.00736647 after_obj=1043.21368 final_D=-3942.23672 final_Dp=-1.15856844 final_obj=4108.955 source=dispersion_scan_summary.csv
+outer=1.4 center=1.1 q3=q5=-1.0989109 q4=1.75622831 after_D=-535.7932 after_Dp=-0.901325137 after_obj=1048.55203 final_D=-3580.91088 final_Dp=-0.925032297 final_obj=3698.46015 source=dispersion_scan_summary.csv
+outer=1.0 center=0.9 q3=q5=-0.784936358 q4=1.43691407 after_D=-48.9847 after_Dp=-1.05366357 after_obj=1054.8016 final_D=nan final_Dp=nan final_obj=inf source=dispersion_scan_summary.csv
+outer=0.5 center=0.7 q3=q5=-0.392468179 q4=1.11759983 after_D=-242.1765 after_Dp=-1.02839474 after_obj=1056.52506 final_D=nan final_Dp=nan final_obj=inf source=dispersion_scan_summary.csv
+outer=1.1 center=1.0 q3=q5=-0.863429994 q4=1.59657119 after_D=-558.787 after_Dp=-0.905461756 after_obj=1064.00371 final_D=-3633.3135 final_Dp=-0.953628329 final_obj=3756.37778 source=dispersion_scan_summary.csv
+outer=0.3 center=0.6 q3=q5=-0.235480907 q4=0.957942714 after_D=-273.394 after_Dp=-1.03249648 after_obj=1068.07924 final_D=nan final_Dp=nan final_obj=inf source=dispersion_scan_summary.csv
+outer=1.3 center=1.0 q3=q5=-1.02041727 q4=1.59657119 after_D=102.6059 after_Dp=-1.07786998 after_obj=1082.74266 final_D=nan final_Dp=nan final_obj=inf source=dispersion_scan_summary.csv
+outer=0.4 center=0.7 q3=q5=-0.313974543 q4=1.11759983 after_D=-535.559 after_Dp=-0.94213325 after_obj=1083.71514 final_D=-3810.68551 final_Dp=-1.04806084 final_obj=3952.18365 source=dispersion_scan_summary.csv
+outer=0.6 center=0.8 q3=q5=-0.470961815 q4=1.27725695 after_D=-569.162 after_Dp=-0.922488139 after_obj=1083.94176 final_D=-3737.25507 final_Dp=-1.00747821 final_obj=3870.67021 source=dispersion_scan_summary.csv
+outer=0.8 center=0.8 q3=q5=-0.627949086 q4=1.27725695 after_D=52.1901 after_Dp=-1.09623299 after_obj=1097.47464 final_D=nan final_Dp=nan final_obj=inf source=dispersion_scan_summary.csv
