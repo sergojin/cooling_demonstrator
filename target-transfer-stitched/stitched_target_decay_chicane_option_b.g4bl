@@ -4,7 +4,7 @@
 # The target/capture stage is the G4BL approximation of
 # chicane/fluka/target_baseline_B/CoolDemoTarget.inp. The downstream decay
 # channel and chicane are kept in sync with the debugged resample transport
-# input used under condor/chicane_group_scan/inputs/resample_downstream.g4bl.
+# input used under condor/option_b/nominal_pi10M/inputs/resample_downstream.g4bl.
 #
 # Units are G4Beamline defaults: mm, MeV/c, Tesla, ns.
 

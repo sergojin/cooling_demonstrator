@@ -1,8 +1,0 @@
-# Diagnostic overlay for the stitched target/decay/chicane line: r < 200 mm.
-# Run from this directory:
-#   g4bl loss_diagnostic_r200.g4bl n_events=1000 viewer=none
-
-include stitched_target_decay_chicane.g4bl
-
-zntuple loss_r200 file=loss_r200 format=FOR009.DAT zloop=2000:23300:500 \
-    require=x*x+y*y<40000 referenceParticle=0

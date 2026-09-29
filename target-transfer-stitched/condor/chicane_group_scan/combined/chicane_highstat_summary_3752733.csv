@@ -1,3 +1,0 @@
-group_name,scale,chunks,n_events,final_mu+_uncut,p_190_210_MeVc,r_le_20mm,p_190_210_MeVc_r_le_20mm,r_le_50mm,p_190_210_MeVc_r_le_50mm,r_le_75mm,p_190_210_MeVc_r_le_75mm,r_le_100mm,p_190_210_MeVc_r_le_100mm,smooth_score,smooth_score_per_track,hard_yield_per_track
-G12,0.75,10,10000000,2629,992,26,18,196,144,433,313,692,491,20.091644579999997,2.0091644579999998e-06,1.8e-06
-G678,1.1,10,10000000,2687,974,26,16,183,132,455,321,746,516,16.089183845999997,1.6089183845999998e-06,1.6e-06

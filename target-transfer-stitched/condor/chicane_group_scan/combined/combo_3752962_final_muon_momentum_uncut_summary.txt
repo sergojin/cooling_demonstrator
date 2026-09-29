@@ -1,7 +1,0 @@
-score_files 10
-final_mu+_uncut 2543
-p_min_MeVc 90.6713
-p_median_MeVc 205.7
-p_mean_MeVc 251.097
-p_max_MeVc 497.622
-p_190_210_MeVc 938

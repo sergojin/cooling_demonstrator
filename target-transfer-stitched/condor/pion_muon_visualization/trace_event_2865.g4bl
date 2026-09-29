@@ -1,6 +1,0 @@
-randomseed now 300000
-include stitched_target_decay_chicane.g4bl
-
-# Trace pion and muon tracks in the event containing a true final-plane muon.
-trace nTrace=1000000 oneNTuple=1 format=asciiExtended file=trace_event_2865.txt \
-    require=EventID==2865&&(PDGid==211||PDGid==-211||PDGid==13||PDGid==-13) traceTune=0
