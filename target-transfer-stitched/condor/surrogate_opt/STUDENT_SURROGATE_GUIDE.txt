@@ -1,0 +1,176 @@
+SURROGATE-MODEL WORKFLOW: STUDENT QUICK GUIDE
+================================================
+
+Purpose
+-------
+A surrogate model is a fast approximation to an expensive simulation.  Run the
+full G4Beamline simulation at a set of parameter points, train a regression
+model to predict the chosen performance metric, use the model to propose useful
+new points, simulate those points, and repeat.  The surrogate is a guide for
+where to run the real simulation; it is not a replacement for final simulation
+validation.
+
+The two scripts in this directory provide a reusable example for grouped
+chicane quadrupoles. Their inputs are:
+
+  G12_scale       scale applied to ch_q1 and ch_q2
+  G345_scale      scale applied to ch_q3, ch_q4, and ch_q5
+  G678_scale      scale applied to ch_q6, ch_q7, and ch_q8
+  G345_z_shift_mm longitudinal displacement of the G345 group
+  G678_z_shift_mm longitudinal displacement of the G678 group
+
+The default target column is phase_ellipse_yield_per_track. It is a historical
+metric name, not a guarantee that two CSVs use the same phase-space acceptance.
+Check the particle, momentum, aperture, ellipse, and normalization definitions
+before combining results.
+
+
+1. Set up Python
+---------------
+Python 3 is required.  A virtual environment is recommended:
+
+  python3 -m venv surrogate-env
+  source surrogate-env/bin/activate
+  python3 -m pip install --upgrade pip
+  python3 -m pip install numpy scikit-learn matplotlib
+
+scikit-learn supplies the ExtraTrees regression model.  NumPy is used for
+arrays and predictions, and Matplotlib is needed only for plots.
+
+The scripts also detect a local python_packages directory if one exists, but
+none is included in this repository. Prefer a virtual environment.
+
+
+2. Generate training data
+-------------------------
+Choose physically sensible ranges for every parameter.  Sample the space with
+the full simulation.  Include the nominal configuration and points spread
+throughout the range, rather than only points near the expected optimum.
+
+Combine the simulation results into one or more summary CSV files.  For these
+scripts, each row needs at least:
+
+  group_name   which parameter group was varied
+  scale        parameter value(s), separated by underscores for combined scans
+  n_events     number of simulated events (used to weight repeated settings)
+  <target>     the numerical response to predict
+
+The historical workflow used phase_ellipse_yield_per_track. See
+propose_chicane_points.py:feature_row() for the accepted group_name and scale
+encodings. Bad or non-finite target values should be removed. Repeated
+parameter settings are merged using an n_events-weighted average.
+
+Keep a separate validation set if enough simulations are available.  Never
+judge the model only on the points used to train it.
+
+
+3. Train the surrogate and propose new points
+----------------------------------------------
+From target-transfer-stitched, run:
+
+  python3 condor/surrogate_opt/propose_chicane_points.py \
+    path/to/summary1.csv path/to/summary2.csv \
+    --target phase_ellipse_yield_per_track \
+    --model extra_trees \
+    --top 10
+
+The training happens inside this command; no separate saved model is produced.
+The script:
+
+  1. reads and deduplicates all training rows;
+  2. fits 500 bootstrapped ExtraTrees regression trees;
+  3. evaluates random candidate settings in the requested parameter ranges;
+  4. estimates prediction spread from disagreement among the trees; and
+  5. ranks candidates by predicted_mean + kappa * model_spread.
+
+The default kappa is 0.5.  A larger value explores uncertain regions more; a
+smaller value concentrates more strongly on predicted high performance.
+
+Always specify physically allowed ranges when they differ from the defaults.
+Parameters can also be held fixed.  For example, to optimize G12 and G678 while
+holding the other variables nominal:
+
+  python3 condor/surrogate_opt/propose_chicane_points.py \
+    path/to/summary1.csv path/to/summary2.csv \
+    --fix-g345 1.0 --fix-g345-z 0 --fix-g678-z 0 \
+    --g12-range 0.80 1.10 --g678-range 1.00 1.25 \
+    --top 10
+
+Use --seed to make candidate generation reproducible.  Run with --help for all
+options.  With --model auto, the script uses ExtraTrees when scikit-learn is
+available and otherwise uses its simple built-in RBF ensemble.
+
+To export G12/G678 proposals in the historical point-file format, add:
+
+  --write-combo-points path/to/new_points.txt \
+  --point-id-start 14000 --n-events 1000000 \
+  --fix-g345-z 0 --fix-g678-z 0
+
+This output option requires --fix-g345 1.0 and both position shifts fixed at
+zero. The old Condor scan runner is no longer included; the exported point
+file is not itself a simulation submission.
+
+
+4. Inspect and validate the model
+---------------------------------
+Make a two-dimensional slice of the fitted response and its uncertainty:
+
+  python3 condor/surrogate_opt/plot_chicane_surrogate.py \
+    path/to/summary1.csv path/to/summary2.csv \
+    --target phase_ellipse_yield_per_track \
+    --pair G12,G678 --fixed-g345 1.0 \
+    --output condor/surrogate_opt/surrogate_g12_g678.png
+
+The left panel is the predicted target; the right panel is tree-to-tree spread.
+Training points are overlaid.  Treat uncertainty as a heuristic, not a rigorous
+confidence interval.
+
+For quantitative validation, reserve simulation points, predict them without
+training on them, and compare prediction with truth using plots of predicted
+versus simulated response and residuals.  Report at least MAE or RMSE.  Also
+check whether the best predicted setting remains best when rerun with higher
+statistics.  If repeated simulations exist, compare model error with the
+simulation's own statistical variation.
+
+
+5. Iterate
+----------
+Submit the proposed points to the full simulation, summarize their results,
+append the new CSV to the training inputs, refit, and propose another batch.
+Continue until high-statistics confirmation shows little or no improvement, or
+the remaining model uncertainty is small enough for the scientific goal.
+
+
+Important cautions
+------------------
+* Do not extrapolate beyond the simulated parameter domain and trust the result.
+  Expand the domain with real simulations first.
+* A high surrogate prediction is only a hypothesis.  Confirm every candidate
+  optimum with an independent, high-statistics simulation.
+* Avoid data leakage: validation rows must not also occur in the training CSVs.
+* Do not mix old chicane outputs affected by the genericsectorbend field
+  overlap with simulations using the corrected idealsectorbend model. The
+  model, source sample, and acceptance definition must match across rows.
+* Use enough training points to cover all active dimensions.  Five points is
+  only the script's technical minimum, not a scientifically adequate design.
+* The current script computes distances directly across scale factors and
+  millimetre shifts.  Because those units have very different magnitudes,
+  --min-distance and --proposal-min-distance are meaningful mainly when the
+  position variables are fixed. The built-in RBF fallback has the same issue.
+  Before optimizing scales and positions together, normalize all input
+  features (for example to [0,1]) in both distance calculations and the model.
+* ExtraTrees cannot be trusted to extrapolate smoothly and its tree spread is
+  not calibrated uncertainty.  These are acceptable for proposing simulations,
+  provided all conclusions are checked with the full model.
+
+
+Relevant repository files
+-------------------------
+  condor/surrogate_opt/propose_chicane_points.py  training and proposals
+  condor/surrogate_opt/plot_chicane_surrogate.py  two-dimensional plots
+  condor/surrogate_opt/README.md                  current scope and cautions
+
+The previous condor/chicane_group_scan/ example and its Option-A-era data
+were removed. They are available in Git history for reference but should not
+be reused as current training data without regenerating them under one
+consistent, validated field model and acceptance definition.
