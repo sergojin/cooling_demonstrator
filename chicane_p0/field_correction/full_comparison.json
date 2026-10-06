@@ -1,0 +1,27 @@
+{
+  "results": {
+    "same_sign": {
+      "muons_190_210_all": 1753,
+      "muons_190_210_r200": 689,
+      "accepted_fixed_2mmrad": 64,
+      "accepted_refit_2mmrad": 150,
+      "x_rms_emittance_mmrad": 1.8624848391243947,
+      "y_rms_emittance_mmrad": 2.333176097600028,
+      "minimum_final_radius_mm": 4.370849438324317,
+      "median_final_radius_mm": 4409.216283842288
+    },
+    "opposite": {
+      "muons_190_210_all": 1232,
+      "muons_190_210_r200": 661,
+      "accepted_fixed_2mmrad": 63,
+      "accepted_refit_2mmrad": 102,
+      "x_rms_emittance_mmrad": 4.868719879761907,
+      "y_rms_emittance_mmrad": 1.9338549448377693,
+      "minimum_final_radius_mm": 7.446256585385706,
+      "median_final_radius_mm": 183.29705566769417
+    }
+  },
+  "fixed_accepted_delta": 1,
+  "paired_standard_error_counts": 9.94987432081431,
+  "note": "Both layouts use idealsectorbend and the same expanded world. Fixed 2 mm rad ellipses are from the prior opposite-sign nominal run."
+}

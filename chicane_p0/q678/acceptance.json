@@ -1,0 +1,25 @@
+{
+  "x": {
+    "mean": [
+      38.84649209388652,
+      -0.017385909075884606
+    ],
+    "alpha": -0.3046612947505184,
+    "beta": 891.4239418520975,
+    "gamma": 0.001225924560931727,
+    "rms_emittance": 6.803942208894698
+  },
+  "y": {
+    "mean": [
+      7.07952353930131,
+      0.00015805701429318601
+    ],
+    "alpha": -0.12019471125630743,
+    "beta": 2866.054613934084,
+    "gamma": 0.0003539523509712569,
+    "rms_emittance": 2.0735411041084233
+  },
+  "limit_mm_rad": 2.0,
+  "source": "/uscms/homes/s/sergo/g4beamline/cooling_demonstrator/target-transfer-stitched/condor/option_b/local_nominal_pi1M_p0_400/score_z23300.txt",
+  "source_sha256": "bc6a5a57812cd6f7b48c2e17e4eb5edd8f5e85d5afa66214d5e01ca2a884df84"
+}

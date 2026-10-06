@@ -1,0 +1,14 @@
+{
+  "n_pions": 1000000,
+  "resampling_seed": 20260928,
+  "source": "/uscms/homes/s/sergo/g4beamline/cooling_demonstrator/target-transfer-stitched/condor/option_b/source_z2000/combined/source_z2000_pi_mu.csv",
+  "source_sha256": "b104503a4b5e3021c9499350cfc84bad06389e7ea15e30f04ce371ae439df15a",
+  "selected_rows": 143062,
+  "source_p_range_MeVc": [
+    0,
+    400
+  ],
+  "beam_sha256": "9a19ac598fcbe9ce3e96e7e145f58518bb494a1ad124c8c723c9daf570e4a839",
+  "g4_random_seed": "G4Beamline default: reset from EventID for each event",
+  "normalization": "per resampled source pion in 0--400 MeV/c, not per proton"
+}
